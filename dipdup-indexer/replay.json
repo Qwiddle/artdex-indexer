@@ -1,0 +1,18 @@
+{
+  "_other": null,
+  "_versions": null,
+  "_welcome": null,
+  "author": "John Smith \u003cjohn_smith@localhost.lan\u003e",
+  "crash_reporting": true,
+  "description": "Indexer for the decentralized NFT dex, ArtDEX.",
+  "dipdup_version": "6",
+  "hasura_image": "hasura/graphql-engine:v2.15.2",
+  "license": "MIT",
+  "line_length": "120",
+  "linters": "default",
+  "package": "artdex_indexer",
+  "postgresql_image": "postgres:14",
+  "project_name": "dipdup-indexer",
+  "template": "blank",
+  "version": "0.0.1"
+}

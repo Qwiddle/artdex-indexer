@@ -1,0 +1,6 @@
+spec_version: 1.2
+package: artdex_indexer
+
+database:
+  kind: sqlite
+  path: dipdup-indexer.sqlite3
