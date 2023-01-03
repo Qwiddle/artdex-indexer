@@ -4,3 +4,100 @@ package: artdex_indexer
 database:
   kind: sqlite
   path: dipdup-indexer.sqlite3
+
+contracts:
+  artdex_factory:
+    code_hash: KT1CFLjKiiyj7VEnd7SdGpjDrYYQYSkakjxB
+    typename: artdex_factory
+  single_artdex_pool:
+    code_hash: KT1LuP9tSkc75bfEGrGLAJnNZ4BE6NCBY6at
+    typename: single_artdex_pool
+
+datasources:
+  tzkt:
+    kind: tzkt
+    url: ${TZKT_URL:-https://api.tzkt.io}
+
+templates:
+  artdex_pool:
+    kind: operation
+    datasource: tzkt
+    types:
+      - transaction
+    contracts: 
+      - <contract>
+    handlers:
+      - callback: on_artdex_pool_change_delta
+        pattern:
+          - destination: <contract>
+            type: transaction
+            entrypoint: changeDelta
+      - callback: on_artdex_pool_change_fee
+        pattern:
+          - destination: <contract>
+            type: transaction
+            entrypoint: changeFee
+      - callback: on_artdex_pool_change_spot
+        pattern:
+          - destination: <contract>
+            type: transaction
+            entrypoint: changeSpot
+      - callback: on_artdex_pool_change_receiver
+        pattern:
+          - destination: <contract>
+            type: transaction
+            entrypoint: changeReceiver
+      - callback: on_artdex_pool_deposit_nfts
+        pattern:
+          - destination: <contract>
+            type: transaction
+            entrypoint: depositNFTs
+      - callback: on_artdex_pool_deposit_tokens
+        pattern:
+          - destination: <contract>
+            type: transaction
+            entrypoint: depositTokens
+      - callback: on_artdex_pool_token_to_nft
+        pattern:
+          - destination: <contract>
+            type: transaction
+            entrypoint: token2NFT
+      - callback: on_artdex_pool_nft_to_token
+        pattern:
+          - destination: <contract>
+            type: transaction
+            entrypoint: nFT2Token
+      - callback: on_artdex_pool_withdraw_any
+        pattern:
+          - destination: <contract>
+            type: transaction
+            entrypoint: withdrawAny
+      - callback: on_artdex_pool_withdraw_nfts
+        pattern:
+          - destination: <contract>
+            type: transaction
+            entrypoint: withdrawNFTs
+      - callback: on_artdex_pool_withdraw_tokens
+        pattern:
+          - destination: <contract>
+            type: transaction
+            entrypoint: withdrawTokens
+
+indexes:
+  temporary:
+    template: artdex_pool
+    values:
+      contract: single_artdex_pool
+
+  artdex_factory:
+    kind: operation
+    datasource: tzkt
+    types:
+      - origination
+    contracts:
+      - artdex_factory
+    handlers:
+      - callback: on_artdex_origination
+        pattern:
+          - type: origination
+            originated_contract: single_artdex_pool
