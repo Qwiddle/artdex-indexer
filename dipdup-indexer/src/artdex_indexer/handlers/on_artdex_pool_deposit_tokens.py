@@ -17,7 +17,6 @@ async def on_artdex_pool_deposit_tokens(
         pool = await models.Pool.get(contract=contract)
         
         pool.reserve = pool.reserve + int(amount)
-        
         await pool.save()
     
     except Exception as e:
