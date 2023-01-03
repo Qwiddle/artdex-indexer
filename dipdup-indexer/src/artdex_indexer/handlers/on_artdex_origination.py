@@ -9,13 +9,13 @@ async def on_artdex_origination(
     ctx: HandlerContext,
     single_artdex_pool_origination: Origination[SingleArtdexPoolStorage],
 ) -> None:
-    try:
-        id_list = single_artdex_pool_origination.data.storage['id_list']
-        new_id_list = {}
+    id_list = single_artdex_pool_origination.data.storage['id_list']
 
-        # convert values from id_list to integers
+    try:
+        # convert indices from id_list to integers
+
         for key, value in id_list.items():
-            new_id_list[key] = int(value)
+            id_list[key] = int(value)
 
         originated_contract = single_artdex_pool_origination.data.originated_contract_address
         index_name = f'artdex_factory_{originated_contract}'
@@ -35,7 +35,7 @@ async def on_artdex_origination(
 
             await models.Pool(
               contract=originated_contract,
-              id_list=new_id_list,
+              id_list=id_list,
               payment_token_fa2=single_artdex_pool_origination.data.storage['payment_token']['fa2_address'],
               payment_token_id=single_artdex_pool_origination.data.storage['payment_token']['token_id'],
               fee=single_artdex_pool_origination.data.storage['fee'],
@@ -44,6 +44,7 @@ async def on_artdex_origination(
               reserve=single_artdex_pool_origination.data.storage['reserve'],
               collection_address=single_artdex_pool_origination.data.storage['nft_collection_address'],
             ).save()
+
     except Exception as e:
         print("Error in on_artdex_origination: " + single_artdex_pool_origination.data.originated_contract_address)
         print(e)
