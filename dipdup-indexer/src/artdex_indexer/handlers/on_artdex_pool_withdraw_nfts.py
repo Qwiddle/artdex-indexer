@@ -1,6 +1,6 @@
 import artdex_indexer.models as models
 
-from artdex_indexer.types.single_artdex_pool.parameter.withdraw_nf_ts import WithdrawNFTsParameter
+from artdex_indexer.types.single_artdex_pool.parameter.withdraw_nfts import WithdrawNFTsParameter
 from artdex_indexer.types.single_artdex_pool.storage import SingleArtdexPoolStorage
 from dipdup.context import HandlerContext
 from dipdup.models import Transaction

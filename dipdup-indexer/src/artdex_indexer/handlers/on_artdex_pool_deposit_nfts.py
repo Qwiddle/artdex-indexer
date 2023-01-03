@@ -1,6 +1,6 @@
 import artdex_indexer.models as models
 
-from artdex_indexer.types.single_artdex_pool.parameter.deposit_nf_ts import DepositNFTsParameter
+from artdex_indexer.types.single_artdex_pool.parameter.deposit_nfts import DepositNFTsParameter
 from artdex_indexer.types.single_artdex_pool.storage import SingleArtdexPoolStorage
 from dipdup.context import HandlerContext
 from dipdup.models import Transaction
@@ -18,7 +18,7 @@ async def on_artdex_pool_deposit_nfts(
 
         # check if id exists in pool already, 
         # if not, set dict value of key id to 1. or, increase value by 1.
-        
+
         for id in nft_id_list:
             if pool.id_list.get(id) == None:
                 pool.id_list[id] = 1
