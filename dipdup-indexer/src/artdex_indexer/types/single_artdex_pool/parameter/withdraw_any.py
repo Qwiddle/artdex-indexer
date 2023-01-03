@@ -11,7 +11,7 @@ from pydantic import Extra
 
 class Token(BaseModel):
     class Config:
-        extra = Extra.forbid
+        extra = Extra.allow
 
     fa2_address: str
     token_id: Optional[str]
@@ -19,7 +19,7 @@ class Token(BaseModel):
 
 class WithdrawAnyParameter(BaseModel):
     class Config:
-        extra = Extra.forbid
+        extra = Extra.allow
 
     amt: str
     token: Token

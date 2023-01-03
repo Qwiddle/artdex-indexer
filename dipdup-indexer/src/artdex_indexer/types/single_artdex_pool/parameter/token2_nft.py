@@ -11,7 +11,7 @@ from pydantic import Extra
 
 class Token2NFTParameter(BaseModel):
     class Config:
-        extra = Extra.forbid
+        extra = Extra.allow
 
     _to: str
     max_tokens_in: str

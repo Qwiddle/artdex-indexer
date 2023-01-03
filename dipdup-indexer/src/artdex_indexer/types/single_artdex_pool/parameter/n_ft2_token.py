@@ -11,7 +11,7 @@ from pydantic import Extra
 
 class NFT2TokenParameter(BaseModel):
     class Config:
-        extra = Extra.forbid
+        extra = Extra.allow
 
     _to: str
     min_tokens_out: str
