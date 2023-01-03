@@ -1,6 +1,6 @@
 import artdex_indexer.models as models
 
-from artdex_indexer.types.single_artdex_pool.parameter.token_to_nft import Token2NFTParameter
+from artdex_indexer.types.single_artdex_pool.parameter.token2_nft import Token2NFTParameter
 from artdex_indexer.types.single_artdex_pool.storage import SingleArtdexPoolStorage
 from dipdup.context import HandlerContext
 from dipdup.models import Transaction
