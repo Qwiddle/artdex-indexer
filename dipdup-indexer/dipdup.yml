@@ -84,11 +84,6 @@ templates:
             entrypoint: withdrawTokens
 
 indexes:
-  temporary:
-    template: artdex_pool
-    values:
-      contract: single_artdex_pool
-
   artdex_factory:
     kind: operation
     datasource: tzkt
